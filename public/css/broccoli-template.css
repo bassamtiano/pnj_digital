@@ -1,0 +1,91 @@
+	.broccoli-rowKepala {
+		height: 10%;
+		margin-top: -1%;
+		text-align: left;
+		padding-bottom: 8%;
+		border-bottom: 1px solid #ccc;
+	}
+
+	.broccoli-rowNavigasi {
+		height: 10%;
+		padding-top: 1.5%;
+	}
+
+	.broccoli-rowIsi {
+		height:65%; border-bottom:1px solid #000;
+	}
+
+
+	.broccoli-parentTable {
+		padding: 0px;
+	}
+
+	.broccoli-colKepalaTable {
+		padding: 0px;
+		height:12%;
+		width: 100%;
+		background-color: blue; 
+	}
+
+	.broccoli-colIsiTable {
+		height:88%;
+		width: 100%;
+		padding: 0px;
+		background: green;
+		margin-top: -8px;
+	}
+
+	.broccoli-bor-bot {
+		border-bottom:2px solid #000;
+		border-top:2px solid #000;
+	}
+
+
+	.broccoli-rowItable {
+		height:88%;
+		padding:0px; 
+		overflow-y:auto;
+		margin-top: 3px;
+	}
+
+	.broccoli-rowHtable {
+		height:12%; 
+		padding:0px;
+	}
+
+	th {
+		border-bottom:2px solid #000;
+	}
+
+	.broccoli-pojokKiri {
+		padding-left: 0px;
+	}
+
+	.broccoli-pojokKanan {
+		padding-right: 0px;
+	}
+
+	.broccoli-hilangPadding-semua {
+		padding-left: 0px;
+		padding-right: 0px;
+	}
+
+	.broccoli-hilangPadding-kiri {
+		padding-left: 0px;
+	}
+
+	.broccoli-hilangPadding-Kanan {
+		padding-right: 0px;
+	}
+
+	.btn-cakep {
+		padding-bottom: 10px;
+	}
+
+	.broccoli-mojok-kiri {
+		padding-left: 0px;
+	}
+
+	.broccoli-mojok-kanan {
+		padding-right: 0px;
+	}

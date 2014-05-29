@@ -1,0 +1,8 @@
+Admin HRD	(Kosong)
+Admin Jurusan (Kosong)
+Admin Prodi (Siap Dibuat)
+
+Mahasiswa (Merapikan)
+Dosen (Merapikan)
+Karyawan (Membuat Rute)
+Pegawai (Construct, Routing)
