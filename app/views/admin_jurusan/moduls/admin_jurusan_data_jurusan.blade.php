@@ -52,11 +52,11 @@
 			<table id="tbl_h" class="table table-striped table-bordered table-hover pull-downs" style="table-layout:fixed;">
 				<tr>
 					<th class="text-center" width="5%" style="border-bottom:2px solid #000;">No </th>
-					<th class="text-center" width="15%" style="border-bottom:2px solid #000;" ng-click="predicate='nama_jurusan'; reverse=!reverse">Nama Jurusan &nbsp; <i class="fa fa-sort"></i> </th>
-					<th class="text-center" width="15%" style="border-bottom:2px solid #000;" ng-click="predicate='kepala_jurusan'; reverse=!reverse">Kepala Jurusan &nbsp; <i class="fa fa-sort"></i> </th>
-					<th class="text-center" width="15%" style="border-bottom:2px solid #000;" ng-click="predicate='jumlah_prodi'; reverse=!reverse">Jumlah Prodi &nbsp; <i class="fa fa-sort"></i>  </th>
+					<th class="text-center" width="15%" style="border-bottom:2px solid #000;" ng-click="predicate='jurusan'; reverse=!reverse">Nama Jurusan &nbsp; <i class="fa fa-sort"></i> </th>
+					<th class="text-center" width="15%" style="border-bottom:2px solid #000;" ng-click="predicate='id_kepala_jurusan'; reverse=!reverse">Kepala Jurusan &nbsp; <i class="fa fa-sort"></i> </th>
+					<!--<th class="text-center" width="15%" style="border-bottom:2px solid #000;" ng-click="predicate='jumlah_prodi'; reverse=!reverse">Jumlah Prodi &nbsp; <i class="fa fa-sort"></i>  </th> -->
 					<th class="text-center" width="15%" style="border-bottom:2px solid #000;" ng-click="predicate='akreditasi'; reverse=!reverse">Akreditasi &nbsp; <i class="fa fa-sort"></i>  </th>
-					<th class="text-center" width="15%" style="border-bottom:2px solid #000;" ng-click="predicate='keterangan'; reverse=!reverse">Keterangan &nbsp; <i class="fa fa-sort"></i> </th>
+					<!--<th class="text-center" width="15%" style="border-bottom:2px solid #000;" ng-click="predicate='keterangan'; reverse=!reverse">Keterangan &nbsp; <i class="fa fa-sort"></i> </th> -->
 					<th class="text-center" width="15%" style="border-bottom:2px solid #000;"> ... </th>
 					
 				</tr>
@@ -66,16 +66,16 @@
 		<div class="col-md-12 broccoli-rowItable">
 			<table class="table table-striped table-bordered table-hover" style="table-layout:fixed;">
 				<tr ng-repeat="dj in data_jurusan">
-					<td class="text-center" width="5%">1</td>
-					<td class="text-center" width="15%">@{{ dj.nama_jurusan }}</td>
-					<td class="text-left" width="15%">@{{ dj.kepala_jurusan }}</td>
-					<td class="text-left" width="15%">@{{ dj.jumlah_prodi }}</td>
-					<td class="text-left" width="15%">@{{ dj.akreditas }}</td>
-					<td class="text-center" width="15%">@{{ dj.keterangan }}</td>
+					<td class="text-center" width="5%">@{{ $index+1 }}</td>
+					<td class="text-center" width="15%">@{{ dj.jurusan }}</td>
+					<td class="text-left" width="15%">@{{ dj.nama }}</td>
+					<!--<td class="text-left" width="15%">@{{ dj.jumlah_prodi }}</td> -->
+					<td class="text-left" width="15%">@{{ dj.akreditasi }}</td>
+					<!--<td class="text-center" width="15%">@{{ dj.keterangan }}</td> -->
 					<td class="text-center" width="15%"> 
 						<div class="btn-group">
-					 		<button class="btn btn-success btn-md" ng-click="modal_ubah_mahasiswa(dm.id_mahasiswa)"> <span class="glyphicon glyphicon-edit"></span></button>
-					 		<button class="btn btn-danger btn-md" ng-click="modal_hapus_mahasiswa(dm.id_mahasiswa, dm.nama)"> <span class="glyphicon glyphicon-trash"></span></button> 
+					 		<button class="btn btn-success btn-md" ng-click="modal_ubah_jurusan(dj.id_jurusan)"> <span class="glyphicon glyphicon-edit"></span></button>
+					 		<button class="btn btn-danger btn-md" ng-click="modal_hapus_jurusan(dj.id_jurusan, dj.jurusan)"> <span class="glyphicon glyphicon-trash"></span></button> 
 						</div>
 					</td>
 				</tr>

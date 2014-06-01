@@ -22,7 +22,7 @@
   <!-- Modified Devi Irawan 5/15/2014 -->
   <div class="modal-content"> <!-- awal modal content -->
 
-    <form class="form-horizontal" id="form_tambah_penelitian" role="form" method="get" action=" {{ route('dosen_tambah_penelitian') }} ">
+    <form class="form-horizontal" id="form_tambah_penelitian" role="form" method="get" action=" {{ route('dosen_tambah_penelitian') }}" target="frame">
 
       <div class="modal-header"> <!-- awal modal header -->
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -75,7 +75,7 @@
       </div> <!-- akhir modal body -->
       <div class="modal-footer"> <!-- awal modal footer -->
         <button type="button" class="btn btn-danger btn-md" data-dismiss="modal" aria-hidden='true'>Close</button>
-          <button type="submit" class="btn btn-primary btn-md" data-dismiss="modal" onclick="tambah_penelitian()">Submit</button>
+          <button type="submit" class="btn btn-primary btn-md" data-dismiss="modal">Submit</button>
           
 
            <!-- <input type="submit" class="btn btn-primary btn-md" value="Submit"> -->
@@ -83,3 +83,5 @@
     </form>
   </div> <!-- akhir modal content -->   
 </div>
+
+<iframe id="frame" src="#" style="height:0; width:0;"></iframe>

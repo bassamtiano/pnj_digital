@@ -29,7 +29,7 @@
 
 			<div class="modal-body">
 				
-				Apakah ingin menghapus
+				Apakah ingin menghapus {{ $nama }}
 
 				<input type="hidden" id="id_mahasiswa" name="id_mahasiswa" value="{{ $id_mahasiswa }}">
 				

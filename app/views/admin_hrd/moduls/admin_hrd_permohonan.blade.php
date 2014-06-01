@@ -6,7 +6,7 @@
 
 
 
-<div ng-controller="AdminKemahasiswaanBacaPermohonanMahasiswaController" id="div-controller">
+<div ng-controller="AdminHRDBacaKaryawanPermohonan" id="div-controller">
 	<div class="row broccoli-rowKepala">
 		<h1> Permohonan <small> Akses dan Modifikasi data-data mahasiswa PNJ </small> </h1>
 		<br>
@@ -62,8 +62,8 @@
 
 					<td class="text-center" width="9%">
 						<div class="btn-group">
-					 		<button class="btn btn-success btn-md" ng-click="modal_ubah_permohonan(p.id_mahasiswa_permohonan)"> <span class="glyphicon glyphicon-edit"></span></button>
-					 		<button class="btn btn-danger btn-md" ng-click="modal_hapus_permohonan(p.id_mahasiswa_permohonan, p.nama)"> <span class="glyphicon glyphicon-trash"></span></button> 
+					 		<button ng-if="p.status == '1'" class="btn btn-success btn-md" ng-click="ubah_batal_permohonan_karyawan(p.id_karyawan_permohonan)"> <span class="glyphicon glyphicon-ok"></span></button>
+					 		<button ng-if="p.status == '0'" class="btn btn-danger btn-md" ng-click="ubah_setuju_permohonan_karyawan(p.id_karyawan_permohonan)"> <span class="glyphicon glyphicon-remove"></span></button>
 						</div>
 					</td>
 						

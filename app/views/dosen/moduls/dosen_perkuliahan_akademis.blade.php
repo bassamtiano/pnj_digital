@@ -17,6 +17,7 @@
 </script>
 
 <div ng-controller="DosenMatakuliahController" id="div-controller">
+
 	<div class="row broccoli-rowKepala">
 		<h1> Akademis</h1>
 		<br>
@@ -31,12 +32,15 @@
 	            <option value="">Kelas</option>
 	        </select>
 		</div><!--/navigasiCombo-->
+
 		<div class="col-md-3 broccoli-mojok-kanan">
 			<input class="form-control" ng-model="query[model_pilihan_cari]" placeholder="Cari . . . ."/>
 		</div><!--/navigasiKanan-->
-		</div>
+	
+	</div>
 
 	<div class="row broccoli-rowIsi">
+		
 		<div class="col-md-12 broccoli-rowHtable">
 			<table id="tbl_h" class="table table-striped table-bordered table-hover pull-downs" style="table-layout:fixed;">
 				<tr>
@@ -66,5 +70,7 @@
 				</tr>
 			</table>
 		</div><!--/broccoli-rowItable-->
+
 	</div><!--/broccoli-rowIsi-->
+
 </div><!--/div-controller-->

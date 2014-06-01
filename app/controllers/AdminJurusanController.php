@@ -33,11 +33,28 @@
  --------------------------------------------------*/ 
 
 		public function modal_tambah_data_jurusan() {
-			return View::make('admin_jurusan.modals.tambah_jurusan');
+			return View::make('admin_jurusan.modals.admin_jurusan_modal_tambah_jurusan');
 		}
+
+		public function modal_ubah_data_jurusan() {
+			$id_jurusan = Input::get('id_jurusan');
+
+			$data_jurusan = Jurusan::where('id_jurusan', '=', $id_jurusan)->get();
+
+			return View::make('admin_jurusan.modals.admin_jurusan_modal_ubah_jurusan', compact('data_jurusan'));
+		}
+
+		public function modal_hapus_data_jurusan() {
+			$id_jurusan = Input::get('id_jurusan');
+			$jurusan = Input::get('jurusan');
+
+			return View::make('admin_jurusan.modals.admin_jurusan_modal_hapus_jurusan', compact('id_jurusan', 'jurusan'));
+		}
+
 		public function modal_tambah_kegiatan_jurusan() {
 			return View::make('admin_jurusan.modals.tambah_kegiatan_jurusan');
 		}
+		
 
 /* --------------------------------------------------
 |
@@ -45,7 +62,20 @@
 |
  --------------------------------------------------*/ 
  		public function admin_jurusan_baca_jurusan() {
- 			return Jurusan::all();
+ 			$data_jurusan =		DB::table('tbl_jurusan')
+ 								->join('tbl_dosen', 'tbl_dosen.id_dosen', '=' , 'tbl_jurusan.id_kepala_jurusan')
+ 								->get(array('tbl_jurusan.id_jurusan', 'tbl_jurusan.jurusan', 'tbl_jurusan.id_kepala_jurusan', 'tbl_dosen.nama', 'tbl_jurusan.akreditasi'));
+
+ 			return $data_jurusan;
+ 		}
+ 		public function admin_jurusan_baca_absen_staff(){
+ 			return Absen::all();
+ 		}
+ 		public function admin_jurusan_baca_dosen(){
+ 			return ViewDosen::all();
+ 		}
+ 		public function admin_jurusan_baca_berita(){
+ 			return Berita::all();
  		}
 
 
@@ -57,23 +87,46 @@
 |
  --------------------------------------------------*/ 
  		public function admin_jurusan_tambah_jurusan(){
- 			$nama_jurusan = Input::get('nama_jurusan');
- 			$kepala_jurusan = Input::get('kepala_jurusan');
- 			$jumlah_prodi = Input::get('jumlah_prodi');
+ 			$jurusan = Input::get('jurusan');
+ 			$id_kepala_jurusan = Input::get('id_kepala_jurusan');
  			$akreditasi = Input::get('akreditasi');
- 			$keterangan = Input::get('keterangan');
-
- 			// return Jurusan::mahasiswa_tambah($no,$nama,$kepala_jurusan,$jumlah_prodi,$akreditasi,$keterangan);
- 			return Jurusan::tambah_jurusan($nama_jurusan,$kepala_jurusan,$jumlah_prodi,$akreditasi,$keterangan);
- 		}
- 		public function admin_jurusan_tambah_kegiatan(){
- 			$nama_event = Input::get('nama_event');
- 			$tujuan = Input::get('tujuan');
- 			$waktu = Input::get('waktu');
- 			return Jurusan::tambah_kegiatan($nama_event,$tujuan,$waktu);
+ 			
+ 			return Jurusan::tambah_jurusan($jurusan,$id_kepala_jurusan,$akreditasi);
  		}
 
+ 		public function admin_jurusan_tambah_berita(){
+ 			$judul_berita= Input::get('judul_berita');
+ 			$isi = Input::get('isi');
+ 			$attachment = Input::get('attachment');
+ 			$tanggal = Input::get('tanggal');
+ 			return Berita::tambah_berita($judul_berita,$isi,$attachment,$tanggal);
+ 		}
+/* --------------------------------------------------
+|
+|	Bagian Ubah
+|
+ --------------------------------------------------*/  
 
+ 		public function admin_jurusan_ubah_jurusan(){
+ 			$id_jurusan = Input::get('id_jurusan');
+ 			$jurusan = Input::get('jurusan');
+ 			$id_kepala_jurusan = Input::get('id_kepala_jurusan');
+ 			$akreditasi = Input::get('akreditasi');
+ 			
+ 			return Jurusan::ubah_jurusan($id_jurusan, $jurusan, $id_kepala_jurusan, $akreditasi);
+ 		}
+
+/* --------------------------------------------------
+|
+|	Bagian Hapus
+|
+ --------------------------------------------------*/  
+
+ 		public function admin_jurusan_hapus_jurusan(){
+
+ 			$id_jurusan = Input::get('id_jurusan');
+ 			return Jurusan::hapus_jurusan($id_jurusan);
+ 		}
 
 	}
 

@@ -1,123 +1,92 @@
-@extends('layout.dashboard')
+{{HTML::script('js/jquery.min.js')}}
+{{HTML::script('js/angular.min.js')}}
+{{HTML::script('js/bootstrap.min.js')}}
 
-@section('head')
-	<title> Halaman Karyawan </title>
-@stop
+<div ng-controller="AdminProdiAbsenMahasiswaController" id="div-controller">
+	<div class="row broccoli-rowKepala">
+		<h1> Absensi Dosen <small> Akses dan Modifikasi data-data mahasiswa PNJ </small> </h1>
+		<br>
+	</div><!--/broccoli-rowKepala-->
+
+	<div class="row broccoli-rowNavigasi broccoli-hilangPadding-semua">
+		<div class="col-md-2 broccoli-mojok-kiri">
+			<button ng-if="status_tambah_absen_mahasiswa.status == 1" class="btn btn-success btn-md" ng-click="modal_tambah_absen_mahasiswa()"> <span class="glyphicon glyphicon-plus"></span> Tambah Absen </button>
+
+			
+		</div><!--/navigasiKiri-->
+		<div class="col-md-2 broccoli-mojok-kanan">
+			<select class="form-control" ng-model='form_pilihan_jurusan.type' required ng-options='option.value as option.name for option in typeOptions_jurusan'></select>
+		</div><!--/navgasi jurusan-->
+
+		<div class="col-md-2 text-right">
+			
+		</div><!--/div for gap-->
+
+		<div class="col-md-3">
+			<select ng-model="model_pilihan_permohonan_cari" class="form-control">
+	            <option value="nama"> NAMA </option>
+	            <option value="permohonan">PERMOHONAN</option>
+	            <option value="keterangan">KETERANGAN</option>
+	            <option value="status">STATUS</option>
+	        </select>
+		</div><!--/navigasiCombo-->
+		<div class="col-md-3 broccoli-mojok-kanan">
+			<input type="text" class="form-control" ng-model="query_permohonan[model_pilihan_permohonan_cari]" placeholder="Cari . . . ."/>
+		</div><!--/navigasiKanan-->
+	</div>
+
+	<div class="row broccoli-rowIsi">
+		<div class="col-md-12 broccoli-rowHtable">
+			<table id="tbl_h" class="table table-striped table-bordered table-hover pull-downs" style="table-layout:fixed;">
+				<tr>
+					<th class="text-center" width="5%" style="border-bottom:2px solid #000;">No </th>
+					<th class="text-center" width="15%" style="border-bottom:2px solid #000;" ng-click="predicate='nama'; reverse=!reverse">NIM &nbsp; <i class="fa fa-sort"></i> </th>
+					<th class="text-center" width="20%" style="border-bottom:2px solid #000;" ng-click="predicate='jabatan'; reverse=!reverse">Nama &nbsp; <i class="fa fa-sort"></i> </th>
+					<th class="text-center" width="10%" style="border-bottom:2px solid #000;" ng-click="predicate='keterangan'; reverse=!reverse">Kelas &nbsp; <i class="fa fa-sort"></i>  </th>
+					<th class="text-center" width="10%" style="border-bottom:2px solid #000;" ng-click="predicate='status'; reverse=!reverse">Konsentrasi &nbsp; <i class="fa fa-sort"></i>  </th>
+					<th class="text-center" width="10%" style="border-bottom:2px solid #000;" ng-click="predicate='status'; reverse=!reverse">Jam Mulai &nbsp; <i class="fa fa-sort"></i>  </th>
+					<th class="text-center" width="10%" style="border-bottom:2px solid #000;" ng-click="predicate='status'; reverse=!reverse">Jam Berakhir &nbsp; <i class="fa fa-sort"></i>  </th>
+					<th class="text-center" width="10%" style="border-bottom:2px solid #000;" ng-click="predicate='status'; reverse=!reverse">Keterangan &nbsp; <i class="fa fa-sort"></i>  </th>
+					<th class="text-center" width="10%" style="border-bottom:2px solid #000;" ng-click="predicate='status'; reverse=!reverse">Status &nbsp; <i class="fa fa-sort"></i>  </th>
+				</tr>
+			</table>
+		</div><!--broccoli-rowHtable-->
+
+		<div class="col-md-12 broccoli-rowItable">
+			<table class="table table-striped table-bordered table-hover" style="table-layout:fixed;">
+
+				<tr ng-repeat="dam in data_absen_mahasiswa | filter:query_absensi | orderBy:predicate:reverse">
+					<td class="text-center" width="5%">@{{ $index+1 }}</td>
+					<td class="text-center" width="15%">@{{ dam.nim }}</td>
+					<td class="text-center" width="20%">@{{ dam.nama }}</td>
+					<td class="text-center" width="10%">@{{ dam.nama_kelas }}</td>
+					<td class="text-center" width="10%">@{{ dam.konsentrasi_prodi }}</td>
+					<td class="text-center" width="10%">
+
+						<span ng-if="dam.jam_mulai != null">
+							@{{ dam.waktu_mulai }}
+						</span>
 
 
-@section('content')
+					</td>
+					<td class="text-center" width="10%">
 
-<ul class="nav nav-tabs" id="TabKelas">
-	<li class="active">
-		<a href="#TI1A" data-toggle="tab">TI - 1A</a>
-	</li>
-	<li>
-		<a href="#TI1B" data-toggle="tab">TI - 1B</a>
-	</li>
-	<li>
-		<a href="#TI3A" data-toggle="tab">TI - 3A</a>
-	</li>
-	<li>
-		<a href="#TI3B" data-toggle="tab">TI - 3B</a>
-	</li>
-	<li>
-		<a href="#TKJ1A" data-toggle="tab">TKJ - 1A</a>
-	</li>
-	<li>
-		<a href="#TKJ1B" data-toggle="tab">TKJ - 1B</a>
-	</li>
-	<li>
-		<a href="#TMJ1A" data-toggle="tab">TMJ - 1A</a>
-	</li>
-	<li>
-		<a href="#TMJAEU" data-toggle="tab">TMJ - AEU</a>
-	</li>
-</ul>
-
-<!-- akhir bagian tab -->
-	
-
-<div class="tab-content">
-	<div class="panel panel-default col-md-12"> <!-- awal col-md-4 buat form dengan panel-->
-				<div class="panel-heading"> <!-- panel heading -->
-					<h3 class="panel-title">
-						Tambah Time Slot
-					</h3>
-				</div> <!-- panel heading -->
-				<div class="panel-body"> <!-- panel body -->
-	<div class="row">
-		
-				<div class="container-fluid table-scrollable table-responsive col-md-12" style="overflow-x:auto;width:1000px;">
+						<span ng-if="dam.jam_akhir != null">
+							@{{ dam.waktu_akhir }}
+						</span>
 						
-						<div style="display:block; height:50px; width:1000px;"> <!-- Buka div Head -->
 
-							<table class="table table-hover table-bordered"> 
-								<thead><tr>
-									<th width="100px">NIM</th>
-					<th width="200px">Nama</th>
-					<th width="100px">Kelas</th>
-					<th width="200px">Konsentrasi</th>
-					<th width="50px">Jam 1</th>
-					<th width="50px">Jam 2</th>
-					<th width="50px">Jam 3</th>
-					<th width="50px">Jam 4</th>
-					<th width="50px">Jam 5</th>
-					<th width="50px">Jam 6</th>
-					<th width="50px">Jam 7</th>
-					<th width="50px">Jam 8</th>
-								</tr></thead>
-							</table>
+					</td>
+					<td class="text-left" width="10%">@{{ dam.keterangan }}</td>
+					<td class="text-center" width="10%">
+						<div class="btn-group">
+					 		<button ng-if="dam.status == 1" class="btn btn-success btn-md" ng-click="modal_ubah_status_absen_mahasiswa(dam.id_mahasiswa_absen, dam.nama)"> <span class="glyphicon glyphicon-ok"></span></button>
+					 		<button ng-if="dam.status == 0" class="btn btn-danger btn-md" ng-click="modal_ubah_status_hadir_mahasiswa(dam.id_mahasiswa_absen, dam.nama)"> <span class="glyphicon glyphicon-remove"></span></button>
+						</div>
+					</td>
+				</tr>
 
-						</div> <!-- Tutup div Head -->
-
-						<div style="display:block; height:300px; width:1000px; overflow-y:visible; overflow-x:hidden;"> <!-- Buka div Body -->
-
-							<table class="table table-striped table-hover table-bordered">
-								<tbody>
-									<tr>
-										<td width="100px">12345</td>
-					<td width="200px">Hendra</td>
-					<td width="100px">TI - 1B</td>
-					<td width="200px">Teknik Informatika</td>
-					<td width="50px">
-						<label><input type="checkbox" value=""> </label>				
-					</td>
-					<td width="50px">
-						<label><input type="checkbox" value=""> </label>				
-					</td>
-					<td width="50px">
-						<label><input type="checkbox" value=""> </label>				
-					</td>
-					<td width="50px">
-						<label><input type="checkbox" value=""> </label>				
-					</td>
-					<td width="50px">
-						<label><input type="checkbox" value=""> </label>				
-					</td>
-					<td width="50px">	
-						<label><input type="checkbox" value=""> </label>				
-					</td>
-					<td width="50px">
-						<label><input type="checkbox" value=""> </label>				
-					</td>
-					<td width="50px">
-						<label><input type="checkbox" value=""> </label>				
-					</td>
-
-									</tr>
-									
-									
-								</tbody>
-
-							</table>
-
-						</div> <!-- Tutup div Body -->
-					<div class="col-md-2">
-						<button type="button" class="btn btn-primary"> Tambah </button>
-					</div>
-
-					</div>
-		</div>	
-		</div>				
-</div><!-- Akhir Tab Content -->
-@stop
+			</table>
+		</div><!--/broccoli-rowItable-->
+	</div><!--/broccoli-rowIsi-->
+</div><!--/div-controller-->

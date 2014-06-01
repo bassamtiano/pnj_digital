@@ -1,3 +1,53 @@
+<div ng-controller="MahasiswaBacaDosenController" id="div-controller">
+
+	<div class="row broccoli-rowKepala">
+		<h1> Data Dosen <small> Akses dan Modifikasi data-data mahasiswa PNJ </small> </h1>
+		<br>
+	</div><!--/broccoli-rowKepala-->
+
+	<div class="row broccoli-rowNavigasi broccoli-hilangPadding-semua">
+
+	</div>
+
+
+	<div class="row broccoli-rowIsi">
+		<div class="col-md-12 broccoli-rowHtable">
+			<table id="tbl_h" class="table table-striped table-bordered table-hover pull-downs" style="table-layout:fixed;">
+				<tr>
+					<th class="text-center" width="5%" style="border-bottom:2px solid #000;">No </th>
+					<th class="text-center" width="13%" style="border-bottom:2px solid #000;" ng-click="predicate='nik'; reverse=!reverse">Tanggal&nbsp; <i class="fa fa-sort"></i> </th>
+					<th class="text-center" width="13%" style="border-bottom:2px solid #000;" ng-click="predicate='nip'; reverse=!reverse">NIP &nbsp; <i class="fa fa-sort"></i> </th>
+					<th class="text-center" width="25%" style="border-bottom:2px solid #000;" ng-click="predicate='nama'; reverse=!reverse">Nama &nbsp; <i class="fa fa-sort"></i> </th>
+					<th class="text-center" width="25%" style="border-bottom:2px solid #000;" ng-click="predicate='email'; reverse=!reverse">Email &nbsp; <i class="fa fa-sort"></i>  </th>
+					<th class="text-center" width="18%" style="border-bottom:2px solid #000;" ng-click="predicate='jurusan'; reverse=!reverse">Jurusan &nbsp; <i class="fa fa-sort"></i> </th>
+					<th class="text-center" width="10%" style="border-bottom:2px solid #000;"> ... </th>
+				</tr>
+			</table>
+		</div>
+
+		<div class="col-md-12 broccoli-rowItable">
+			<table class="table table-striped table-bordered table-hover" style="table-layout:fixed;">
+				<tr>
+					<td class="text-center" width="5%">@{{ $index+1 }}</td>
+					<td class="text-center" width="13%">@{{ d.nik }}</td>
+					<td class="text-left" width="13%">@{{ d.nip }}</td>
+					<td class="text-left" width="25%">@{{ d.nama }}</td>
+					<td class="text-center" width="25%">@{{ d.email }}</td>
+					<td class="text-center" width="18%">@{{ d.jurusan }}</td>
+					<td class="text-center" width="10%"> 
+						<div class="btn-group">
+					 		<button class="btn btn-primarry btn-md" ng-click="modal_baca_dosen_detail(d.id_dosen)"> <span class="glyphicon glyphicon-eye-open"></span></button>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+
+	</div>
+
+
+</div>
+
 <div class="row">
 	<div class="col-md-12">
 		<div class="col-md-4" align="center"> <!-- awal col-md-4 -->

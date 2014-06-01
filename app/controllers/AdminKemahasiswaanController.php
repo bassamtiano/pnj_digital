@@ -111,9 +111,9 @@
 		}
 
 		public function admin_kemahasiswaan_modal_hapus_permohonan() {
-			$id_mahasiswa_permohonan = Input::get('id_mahasiswa_permohonan');
+			$id_mahasiswa = Input::get('id_mahasiswa');
 			$nama = Input::get('nama');
-			return View::make('admin_kemahasiswaan.modals.admin_kemahasiswaan_modal_hapus_permohonan', compact('id_mahasiswa_permohonan', 'nama'));
+			return View::make('admin_kemahasiswaan.modals.admin_kemahasiswaan_modal_hapus_permohonan', compact('id_mahasiswa', 'nama'));
 		}
 
 

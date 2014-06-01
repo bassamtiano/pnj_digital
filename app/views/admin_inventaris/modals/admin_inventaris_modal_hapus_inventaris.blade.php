@@ -1,10 +1,10 @@
 <script type="text/javascript">
   function hapus_inventaris(){
-    var dataPeng = $("#form_hapus_").serialize();
+    var dataHapusInventaris = $("#form_hapus_inventaris").serialize();
 
     $.ajax({
-      url:"/public/admin_inventaris/hapus/inventaris_jurusan",
-      data: dataF,
+      url:"/public/admin_inventaris/hapus/inventaris",
+      data: dataHapusInventaris,
 
 
       success:function(result){
@@ -12,7 +12,7 @@
         }
       });
 
-     dashboard_menu_active('.menu_admin_inventaris_group', '#admin_inventaris_content_dashboard', '#' + 'menu_admin_inventaris_data_inventaris_jurusan');
+     dashboard_menu_active('.menu_admin_inventaris_group', '#admin_inventaris_content_dashboard', '#' + 'menu_admin_inventaris_data_inventaris');
   }
 </script>
 
@@ -27,7 +27,7 @@
 
 			<div class="modal-body">
 				
-				Apakah ingin menghapus ?
+				Apakah ingin menghapus {{ $nama_inventaris }}?
 
 				<input type="hidden" name="id_inventaris" value="{{ $id_inventaris }}">
 				

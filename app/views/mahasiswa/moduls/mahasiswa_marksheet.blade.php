@@ -1,3 +1,45 @@
+<div ng-controller="AdminKemahasiswaanBacaMahasiswaController" id="div-controller">
+
+	<div class="row broccoli-rowKepala">
+		<h1> Data Mahasiswa <small> Akses dan Modifikasi data-data mahasiswa PNJ </small> </h1>
+		<br>
+	</div><!--/broccoli-rowKepala-->
+
+	<div class="row broccoli-rowNavigasi broccoli-hilangPadding-semua">
+
+	</div>
+
+	<div class="row broccoli-rowIsi">
+
+		<div class="col-md-12 broccoli-rowHtable">
+			<table id="tbl_h" class="table table-striped table-bordered table-hover pull-downs" style="table-layout:fixed;">
+				<tr>
+					<th class="text-center" width="5%" style="border-bottom:2px solid #000;">No </th>
+					<th class="text-center" width="13%" style="border-bottom:2px solid #000;" ng-click="predicate='nim'; reverse=!reverse">Mata Kuliah &nbsp; <i class="fa fa-sort"></i> </th>
+					<th class="text-center" width="25%" style="border-bottom:2px solid #000;" ng-click="predicate='nama'; reverse=!reverse">SKS &nbsp; <i class="fa fa-sort"></i> </th>
+					<th class="text-center" width="10%" style="border-bottom:2px solid #000;" ng-click="predicate='nama_kelas'; reverse=!reverse">Nilai Huruf &nbsp; <i class="fa fa-sort"></i>  </th>
+					<th class="text-center" width="15%" style="border-bottom:2px solid #000;" ng-click="predicate='konsentrasi_prodi'; reverse=!reverse">Nilai Angka &nbsp; <i class="fa fa-sort"></i>  </th>
+				</tr>
+			</table>
+		</div>
+
+		<div class="col-md-12 broccoli-rowItable">
+			<table class="table table-striped table-bordered table-hover" style="table-layout:fixed;">
+				<tr ng-repeat="dm in data_mahasiswa | filter:query | orderBy:predicate:reverse">
+					<td class="text-center" width="5%">@{{ $index+1 }}</td>
+					<td class="text-center" width="13%">@{{ dm.nim }}</td>
+					<td class="text-left" width="25%">@{{ dm.nama }}</td>
+					<td class="text-left" width="10%">@{{ dm.nama_kelas }}</td>
+					<td class="text-left" width="15%">@{{ dm.konsentrasi_prodi }}</td>
+				</tr>
+			</table>
+		</div>
+
+	</div>
+
+</div>
+
+
 	<!-- EDITED almerps -->
 	<div class="row">
 		<h1>Data Marksheet</h1><br />
@@ -24,6 +66,10 @@
 		</div>
 
 	</div><!-- Akhir div row sub menu -->
+
+
+
+
 	<div class="row moduls-main-content">
 		<div class="col-md-12">
 			<div class="container-fluid table-scrollable table-reponsive table-bordered" style="overflow-x:auto;" > <!-- awal div container table -->

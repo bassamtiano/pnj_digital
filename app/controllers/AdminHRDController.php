@@ -18,6 +18,10 @@
 			return View::make('admin_hrd.moduls.admin_hrd_absensi_staff');
 		}
 
+		public function admin_hrd_permohonan() {
+			return View::make('admin_hrd.moduls.admin_hrd_permohonan');
+		}
+
 		public function admin_hrd_permohonan_resign() {
 			return View::make('admin_hrd.moduls.admin_hrd_permohonan_resign');
 		}
@@ -93,7 +97,22 @@
 		}
 
 		public function admin_hrd_baca_permohonan_karyawan() {
-			return ViewAdminHRDPermohonanKaryawan::all();
+			return ViewKaryawanPermohonan::all();
+		}
+
+		public function admin_hrd_baca_karyawan_absensi() {
+
+			$tanggal = '2014-06-01';
+
+			$karyawan_absensi =		DB::table('tbl_karyawan_absensi')
+									->join('tbl_karyawan', 'tbl_karyawan.nik', '=', 'tbl_karyawan_absensi.nik')
+									->join('tbl_jabatan', 'tbl_jabatan.id_jabatan', '=', 'tbl_karyawan_absensi.id_jabatan')
+									->where('tbl_karyawan_absensi.tanggal', '=', $tanggal)
+									->get(array('tbl_karyawan_absensi.id_karyawan_absensi', 'tbl_karyawan.nik', 'tbl_karyawan.nama', 'tbl_jabatan.id_jabatan', 'tbl_jabatan.jabatan', 'tbl_karyawan_absensi.tanggal','tbl_karyawan_absensi.keterangan',  'tbl_karyawan_absensi.status'));
+
+
+			return $karyawan_absensi;
+
 		}
 
 
@@ -149,6 +168,21 @@
 			$id_golongan = 'id_golongan';
 			$id_jurusan = 'id_jurusan';
 			return AdminHRD::ubah_pegawai($nik, $id_biodata, $id_status_pegawai, $tanggal_mulai_kerja, $id_golongan, $id_jurusan); 
+		}
+
+		public function admin_hrd_ubah_absen() {
+			$id_karyawan_absensi = Input::get('id_karyawan_absensi');
+			$status = Input::get('status');
+
+
+			return KaryawanAbsensi::ubah_karyawan_absensi($id_karyawan_absensi, $status);
+		}
+
+		public function admin_hrd_ubah_permohonan() {
+			$id_karyawan_permohonan = Input::get('id_karyawan_permohonan');
+			$status = Input::get('status');
+
+			return KaryawanPermohonan::ubah_status_permohonan_karyawan($id_karyawan_permohonan, $status);
 		}
 
 		/*---------------------------------------------------|

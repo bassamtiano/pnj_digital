@@ -11,7 +11,7 @@ function tambah_penelitian_dosen() {
   var dataPen = $("#form_tambah_penelitian_dosen").serialize();
   alert(dataPen);
     $.ajax({
-       url:"admin_prodi/admin_prodi_tambah_penelitian_dosen",
+       url:"/public/admin_prodi/tambah/admin_prodi_tambah_penelitian_dosen",
        data: dataPen,
        success:function(result){
         dashboard_menu_active('.menu_admin_prodi_group', '#admin_prodi_content_dashboard', '#' + 'menu_dosen_kegiatan_penelitian');

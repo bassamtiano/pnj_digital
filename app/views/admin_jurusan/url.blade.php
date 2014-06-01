@@ -11,5 +11,9 @@
 // Modals
 
 	var url_modal_tambah_data_jurusan = "{{ route('modal_tambah_data_jurusan') }}";
+	var url_modal_ubah_data_jurusan = "{{ route('modal_ubah_data_jurusan') }}";
+	var url_modal_hapus_data_jurusan = "{{ route('modal_hapus_data_jurusan') }}";
+
 	var url_modal_tambah_kegiatan_jurusan = "{{ route('modal_tambah_kegiatan_jurusan') }}";
+	
 </script>

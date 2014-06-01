@@ -70,10 +70,31 @@
  			return View::make('admin_prodi.modals.admin_prodi_modal_hapus_karyawan');
  		} 
 
+
+ 		public function admin_prodi_modal_tambah_absen_mahasiswa() {
+ 			return View::make('admin_prodi.modals.admin_prodi_modal_tambah_absen_mahasiswa');
+ 		}
+
+ 		public function admin_prodi_modal_ubah_status_hadir_mahasiswa() {
+ 			$id_mahasiswa_absen = Input::get('id_mahasiswa_absen');
+ 			$nama = Input::get('nama');
+ 			$timeslot = TimeSlot::get(array('id_timeslot', 'waktu'));
+
+ 			return View::make('admin_prodi.modals.admin_prodi_modal_ubah_status_hadir_mahasiswa', compact('id_mahasiswa_absen', 'nama', 'timeslot'));
+ 		}
+
+
+		public function admin_prodi_moodal_ubah_status_absen_mahasiswa() {
+			$id_mahasiswa_absen = Input::get('id_mahasiswa_absen');
+ 			$nama = Input::get('nama');
+
+			return View::make('admin_prodi.modals.admin_prodi_modal_ubah_status_absen_mahasiswa', compact('id_mahasiswa_absen', 'nama'));
+		}
+
  		public function admin_prodi_modal_tambah_penelitian_dosen(){
  			$dosen = Dosen::get(array('id_dosen', 'nama'));
  			return View::make('admin_prodi.modals.admin_prodi_modal_tambah_penelitian_dosen', compact('dosen'));
- 		} 			
+ 		} 				
 
  		public function admin_prodi_modal_detail_penelitian_dosen(){
  			$id_dosen_penelitian = Input::get('id_dosen_penelitian');
@@ -139,6 +160,72 @@
 		public function admin_prodi_baca_penelitian_dosen() {
 			return ViewPenelitianDosen::all();
 		}
+
+		public function admin_prodi_baca_status_absen_sekarang() {
+			return AbsenMahasiswa::status_absen_sekarang();
+		}
+
+		public function admin_prodi_baca_absen_mahasiswa() {
+
+			$data_absen = array();
+			$absen_mahasiswa =	DB::table('tbl_mahasiswa_absen')
+								->join('tbl_mahasiswa', 'tbl_mahasiswa.nim', '=', 'tbl_mahasiswa_absen.nim')
+								->join('tbl_kelas', 'tbl_kelas.id_kelas', '=', 'tbl_mahasiswa.id_kelas')
+								->join('tbl_konsentrasi_prodi', 'tbl_konsentrasi_prodi.id_konsentrasi_prodi', '=', 'tbl_mahasiswa.id_konsentrasi_prodi')
+								->get(array('tbl_mahasiswa_absen.id_mahasiswa_absen', 'tbl_mahasiswa_absen.tanggal', 'tbl_mahasiswa_absen.jam_mulai', 'tbl_mahasiswa_absen.jam_akhir', 'tbl_mahasiswa_absen.nim', 'tbl_mahasiswa.nama', 'tbl_kelas.nama_kelas', 'tbl_konsentrasi_prodi.konsentrasi_prodi', 'tbl_mahasiswa_absen.keterangan', 'tbl_mahasiswa_absen.status'));
+
+
+			foreach ($absen_mahasiswa as $mab) {
+			    $jam_mulai = $mab->jam_mulai;
+			    $jam_akhir = $mab->jam_akhir;
+
+			    foreach (TimeSlot::where('id_timeslot', '=', $jam_mulai)->get(array('waktu')) as $w_mulai) {
+			    	$waktu_mulai = $w_mulai->waktu;
+			    }
+
+			    foreach (TimeSlot::where('id_timeslot', '=', $jam_akhir)->get(array('waktu')) as $w_akhir) {
+			    	$waktu_akhir = $w_akhir->waktu;
+			    }
+
+			    $id_mahasiswa_absen = $mab->id_mahasiswa_absen;
+			    $tanggal = $mab->tanggal;
+			    $nim = $mab->nim;
+			    $nama = $mab->nama;
+			    $nama_kelas = $mab->nama_kelas;
+			    $konsentrasi_prodi = $mab->konsentrasi_prodi;
+			    $keterangan = $mab->keterangan;
+			    $status = $mab->status;
+
+
+			    $absen_m = array('id_mahasiswa_absen' => $id_mahasiswa_absen, 'tanggal' => $tanggal, 'jam_mulai' => $jam_mulai, 'waktu_mulai' => $waktu_mulai, 'jam_akhir' => $jam_akhir, 'waktu_akhir' => $waktu_akhir, 'nim' => $nim, 'nama' => $nama, 'nama_kelas' => $nama_kelas, 'konsentrasi_prodi' => $konsentrasi_prodi, 'keterangan' => $keterangan, 'status' => $status);
+				array_push($data_absen, $absen_m);
+
+			}
+
+			return $data_absen;
+			
+		}
+
+		public function admin_prodi_baca_absen_dosen() {
+			$absen_dosen =		DB::table('tbl_dosen_absen')
+								->join('tbl_dosen', 'tbl_dosen.id_dosen', '=', 'tbl_dosen_absen.id_dosen')
+								->get(array('tbl_dosen_absen.id_dosen_absen', 'tbl_dosen_absen.id_dosen', 'tbl_dosen.nip', 'tbl_dosen.nama', 'tbl_dosen_absen.tanggal', 'tbl_dosen_absen.keterangan', 'tbl_dosen_absen.status'));
+
+			return $absen_dosen;
+
+		}
+
+/* ----------------------------------------------------------------------------------------------------
+|
+|	Admin Program Studi Tambah
+|	V1.0
+|
+ ---------------------------------------------------------------------------------------------------- */
+
+		public function admin_prodi_tambah_absen_mahasiswa() {
+			return AbsenMahasiswa::tambah_absen_mahasiswa();
+		}
+
 //======================= AME START=========================================//
 		public function admin_prodi_tambah_pengabdian_dosen(){
 			$id_dosen = Input::get('id_dosen');
@@ -247,5 +334,30 @@
 		// 	return DosenPengabdian::hapus_pengabdian($id_dosen_pengabdian);
 		// }
 //==================================================================//
+
+
+		public function admin_prodi_ubah_hadir_mahasiswa() {
+			$id_mahasiswa_absen = Input::get('id_mahasiswa_absen');
+			$jam_mulai = Input::get('jam_mulai');
+			$jam_akhir = Input::get('jam_akhir');
+			$status = "1";
+			AbsenMahasiswa::ubah_absen_mahasiswa($id_mahasiswa_absen, $jam_mulai, $jam_akhir, $status);
+		}
+
+		public function admin_prodi_ubah_absen_mahasiswa() {
+			$id_mahasiswa_absen = Input::get('id_mahasiswa_absen');
+			$jam_mulai = null;
+			$jam_akhir = null;
+			$status = "0";
+			AbsenMahasiswa::ubah_absen_mahasiswa($id_mahasiswa_absen, $jam_mulai, $jam_akhir, $status);
+		}
+
+		public function admin_prodi_ubah_hadir_mahasiswa() {
+
+		}
+
+		public function admin_prodi_ubah_absen_mahasiswa() {
+			
+		}
 
 	}

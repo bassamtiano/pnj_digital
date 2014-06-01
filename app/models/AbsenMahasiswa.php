@@ -86,13 +86,34 @@
 
 		}
 
-		public static function tambah_absen_mahasiswa($id_mahasiswa, $id_timeslot, $tanggal, $status){
-			return AbsenMahasiswa::create(array('id_mahasiswa' => $id_mahasiswa, 'id_timeslot' => $id_timeslot,'tanggal' => $tanggal, 'status' => $status));
+		public static function status_absen_sekarang() {
+			$tanggal = date('Y-m-d');
+			$data_mahasiswa = AbsenMahasiswa::where('tanggal', '=', $tanggal)->get(array('nim'))->first();
+
+			if(empty($data_mahasiswa)) {
+				return array('status' => 1);
+			}
+
+			else {
+				return array('status' => 0);
+			}
 		}
 
-		public static function ubah_absen_mahasiswa($id_absen_mahasiswa, $id_mahasiswa, $id_timeslot, $tanggal, $status){
+		public static function tambah_absen_mahasiswa(){
 
-			return AbsenMahasiswa::where('id_mahasiswa_absen','=', $id_absen_mahasiswa)->update(array('id_mahasiswa' => $id_mahasiswa, 'id_timeslot' => $id_timeslot,'tanggal' => $tanggal, 'status' => $status));
+			$id_konsentrasi_prodi = '1';
+
+			foreach (Mahasiswa::where('id_konsentrasi_prodi', '=', $id_konsentrasi_prodi)->get(array('nim')) as $dm) {
+				AbsenMahasiswa::create(array('tanggal' => date('Y-m-d'), 'jam_mulai' => null, 'jam_akhir' => null, 'nim' => $dm->nim, 'keterangan' => null, 'status' => 0));	
+			}
+
+			return '1';
+			
+		}
+
+		public static function ubah_absen_mahasiswa($id_mahasiswa_absen, $jam_mulai, $jam_akhir, $status){
+
+			return AbsenMahasiswa::where('id_mahasiswa_absen','=', $id_mahasiswa_absen)->update(array('jam_mulai' => $jam_mulai, 'jam_akhir' => $jam_akhir, 'status' => $status));
 
 		}
 

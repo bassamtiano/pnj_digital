@@ -14,7 +14,7 @@
 </script>
 
 
-<div ng-controller="AdminKemahasiswaanBacaMahasiswaController" id="div-controller">
+<div ng-controller="MahasiswaBacaKalenderAkademisController" id="div-controller">
 
 
 	<div class="row broccoli-rowKepala">

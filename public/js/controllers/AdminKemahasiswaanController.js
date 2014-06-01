@@ -84,7 +84,8 @@ function AdminKemahasiswaanBacaPermohonanMahasiswaController($scope, $http) {
   	}
 
   	$scope.modal_hapus_permohonan = function(id_mahasiswa_permohonan, nama) {
-  		$('.modal').load(url_admin_kemahasiswaan_modal_hapus_permohonan + '?id_mahasiswa_permohonan=' + id_mahasiswa_permohonan + '&nama=' + nama, function() {
+  		var nama_pemohon = nama;
+  		$('.modal').load(url_admin_kemahasiswaan_modal_hapus_permohonan + '?id_mahasiswa_permohonan=' + id_mahasiswa_permohonan + '&nama=' + encodeURIComponent(nama_pemohon), function() {
 			$('.modal').modal('show');
 		});
   	}

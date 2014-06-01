@@ -5,10 +5,7 @@
 	var url_admin_hrd_data_karyawan = "{{ route('admin_hrd_data_karyawan') }}";
 	var url_admin_hrd_absensi_staff = "{{ route('admin_hrd_absensi_staff') }}";
 
-	var url_admin_hrd_permohonan_resign = "{{ route('admin_hrd_permohonan_resign') }}";
-	var url_admin_hrd_permohonan_cuti = "{{ route('admin_hrd_permohonan_cuti') }}";
-	var url_admin_hrd_permohonan_kas_bon = "{{ route('admin_hrd_permohonan_kas_bon') }}";
-	var url_admin_hrd_permohonan_lainnya = "{{ route('admin_hrd_permohonan_lainnya') }}";
+	var url_admin_hrd_permohonan = "{{ route('admin_hrd_permohonan') }}";
 
 	var url_admin_hrd_berita = "{{ route('admin_hrd_berita') }}";
 	

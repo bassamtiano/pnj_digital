@@ -17,8 +17,8 @@
 			return View::make('admin_inventaris.moduls.admin_inventaris_beranda');	
 		}
 
-		public function admin_inventaris_data_inventaris_civitas() {
-			return View::make('admin_inventaris.moduls.admin_inventaris_data_inventaris_civitas');	
+		public function admin_inventaris_data_inventaris() {
+			return View::make('admin_inventaris.moduls.admin_inventaris_data_inventaris');	
 		}
 
 		public function admin_inventaris_data_inventaris_jurusan() {
@@ -40,12 +40,26 @@
 |
  ---------------------------------------------------------------------------------------------------- */
 
-		public function modal_tambah_inventaris_civitas() {
-			return View::make('admin_inventaris.modals.admin_inventaris_modal_tambah_inventaris_civitas');
-		}
-		public function modal_tambah_inventaris_jurusan() {
-			return View::make('admin_inventaris.modals.admin_inventaris_modal_tambah_inventaris_jurusan');
-		}	
+ 		public function admin_inventaris_modal_tambah_inventaris() {
+
+ 			$data_inventaris_pemilik = InventarisPemilik::all();
+ 			return View::make('admin_inventaris.modals.admin_inventaris_modal_tambah_inventaris', compact('data_inventaris_pemilik'));
+ 		}
+
+ 		public function admin_inventaris_modal_ubah_inventaris() {
+
+ 			$id_inventaris = Input::get('id_inventaris');
+ 			$data_inventaris = Inventaris::where('id_inventaris', '=', $id_inventaris)->get(array('id_inventaris', 'kode_inventaris', 'nama_inventaris', 'kondisi_inventaris', 'tahun_anggaran_inventaris', 'id_inventaris_pemilik'));
+ 			$data_inventaris_pemilik = InventarisPemilik::all();
+
+ 			return View::make('admin_inventaris.modals.admin_inventaris_modal_ubah_inventaris', compact('data_inventaris', 'data_inventaris_pemilik'));
+ 		}
+
+ 		public function admin_inventaris_modal_hapus_inventaris() {
+ 			$id_inventaris = Input::get('id_inventaris');
+ 			$nama_inventaris = Input::get('nama_inventaris');
+			return View::make('admin_inventaris.modals.admin_inventaris_modal_hapus_inventaris', compact('id_inventaris', 'nama_inventaris'));
+ 		}
 
 /* ----------------------------------------------------------------------------------------------------
 |
@@ -53,12 +67,15 @@
 |	V1.0
 |
  ---------------------------------------------------------------------------------------------------- */
- 		public function admin_inventaris_baca_inventaris_civitas() {
- 			$id_inventaris = 1;
-
+ 		public function admin_inventaris_baca_inventaris() {
  			
+ 			// return AdminInventarisCivitas::where('id_inventaris','=', $id_inventaris)->get();
 
- 			return AdminInventarisCivitas::where('id_inventaris','=', $id_inventaris)->get();
+ 			$data_inventaris = 	DB::table('tbl_inventaris')
+ 								->join('tbl_inventaris_pemilik', 'tbl_inventaris_pemilik.id_inventaris_pemilik', '=', 'tbl_inventaris.id_inventaris_pemilik')
+ 								->get(array('tbl_inventaris.id_inventaris', 'tbl_inventaris.kode_inventaris', 'tbl_inventaris.nama_inventaris', 'tbl_inventaris.kondisi_inventaris', 'tbl_inventaris.tahun_anggaran_inventaris', 'tbl_inventaris.id_inventaris_pemilik', 'tbl_inventaris_pemilik.pemilik'));
+
+ 			return $data_inventaris;
 
  		}
 
@@ -69,14 +86,14 @@
 |
  ---------------------------------------------------------------------------------------------------- */
 
- 		public function admin_inventaris_tambah_inventaris_civitas() {
+ 		public function admin_inventaris_tambah_inventaris() {
  			$kode_inventaris = Input::get('kode_inventaris');
  			$nama_inventaris = Input::get('nama_inventaris');
  			$kondisi_inventaris = Input::get('kondisi_inventaris');
  			$tahun_anggaran_inventaris = Input::get('tahun_anggaran_inventaris');
- 			$pemilik_inventaris = Input::get('pemilik_inventaris');
+ 			$id_inventaris_pemilik = Input::get('id_inventaris_pemilik');
 
- 			return AdminInventarisCivitas::tambah_inventaris_civitas($kode_inventaris, $nama_inventaris, $kondisi_inventaris, $tahun_anggaran_inventaris, $pemilik_inventaris);
+ 			return Inventaris::tambah_inventaris($kode_inventaris, $nama_inventaris, $kondisi_inventaris, $tahun_anggaran_inventaris, $id_inventaris_pemilik);
  		}
 /* ----------------------------------------------------------------------------------------------------
 |
@@ -85,12 +102,32 @@
 |
  ---------------------------------------------------------------------------------------------------- */
 
+ 	public function admin_inventaris_ubah_inventaris() {
+ 		$id_inventaris = Input::get('id_inventaris');
+ 		$kode_inventaris = Input::get('kode_inventaris');
+		$nama_inventaris = Input::get('nama_inventaris');
+		$kondisi_inventaris = Input::get('kondisi_inventaris');
+		$tahun_anggaran_inventaris = Input::get('tahun_anggaran_inventaris');
+		$id_inventaris_pemilik = Input::get('id_inventaris_pemilik');
+
+		return Inventaris::ubah_inventaris($id_inventaris, $kode_inventaris, $nama_inventaris, $kondisi_inventaris, $tahun_anggaran_inventaris, $id_inventaris_pemilik);
+
+
+ 	}
+
 /* ----------------------------------------------------------------------------------------------------
 |
 |	Admin Inventaris Hapus
 |	V1.0
 |
  ---------------------------------------------------------------------------------------------------- */
+
+ 	public function admin_inventaris_hapus_inventaris() {
+
+ 		$id_inventaris = Input::get('id_inventaris');
+ 		return Inventaris::hapus_inventaris($id_inventaris);
+
+ 	}
 
 /* ----------------------------------------------------------------------------------------------------
 |
@@ -99,4 +136,4 @@
 |
  ---------------------------------------------------------------------------------------------------- */
 
-	}
+}
