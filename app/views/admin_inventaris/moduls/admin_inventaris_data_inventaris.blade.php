@@ -1,4 +1,3 @@
- <!-- Edited by Kazelord 070514-->
 {{HTML::script('js/jquery.min.js')}}
 {{HTML::script('js/angular.min.js')}}
 {{HTML::script('js/bootstrap.min.js')}}
@@ -20,7 +19,7 @@
 <div ng-controller="AdminInventarisController" id="div-controller">
 	<!-- awal title -->
 	<div class="row broccoli-rowKepala">
-		<h1> Data Inventaris  <small> Akses dan Modifikasi data-data inventaris civitas PNJ </small> </h1>
+		<h1> Data Inventaris  <small> Akses dan Modifikasi data-data inventaris PNJ </small> </h1>
 		<br>
 	</div><!--/broccoli-rowKepala-->
 	<!-- akhir title -->

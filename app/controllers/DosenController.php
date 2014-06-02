@@ -179,6 +179,20 @@
  			return DosenPenelitian::where('id_laporan_download', '=', $id_laporan_download)->get();
  		}
 
+ 		public function dosen_baca_nilai(){
+
+ 			$id_dosen = '1';
+
+			$baca_nilai =	DB::table('tbl_nilai')
+							->join('tbl_mahasiswa', 'tbl_mahasiswa.nim', '=', 'tbl_nilai.nim')
+							->join('tbl_dosen', 'tbl_dosen.id_dosen', '=', 'tbl_nilai.id_dosen')
+							->join('tbl_mata_kuliah', 'tbl_mata_kuliah.id_mata_kuliah', '=', 'tbl_nilai.id_mata_kuliah')
+							->where('tbl_nilai.id_dosen', '=', $id_dosen)
+							->get(array('tbl_nilai.id_nilai', 'tbl_nilai.nim', 'tbl_mahasiswa.nama', 'tbl_nilai.id_mata_kuliah', 'tbl_mata_kuliah.mata_kuliah', 'tbl_nilai.semester', 'tbl_nilai.tugas', 'tbl_nilai.uts', 'tbl_nilai.uas'));
+
+			return $baca_nilai;
+ 		}
+
 
  		public function dosen_ambil_data_dosen_ringkas() {
 

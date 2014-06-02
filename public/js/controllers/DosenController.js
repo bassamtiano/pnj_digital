@@ -111,7 +111,11 @@ function DosenBacaPengabdianController($scope, $http) {
 /* -----------------------NILAI---------------------------------*/ 
 /* ------------------------------------------------------------------*/ 
 function DosenTransaksiNilaiController($scope, $http) {
-	
+
+	$http.get('/public/dosen/baca/nilai').success(function(data) {
+		$scope.nilai = data;
+	});	
+
 	$scope.dosen_modal_ubah_transaksi_nilai_perkuliahan = function(id_transaksi_nilai_perkuliahan) {
 		$('.modal').load(url_dosen_modal_ubah_transaksi_nilai_perkuliahan + 'id_transaksi_nilai_perkuliahan=' + id_transaksi_nilai_perkuliahan, function() {
 			$('.modal').modal('show');				
