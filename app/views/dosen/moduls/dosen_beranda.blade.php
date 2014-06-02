@@ -1,6 +1,3 @@
-<!-- Edited:almerps 240414 --> <!-- Edited by Kazelord 240414 : 7.27 PM-->
-<!-- Created By Kazelord-->
-
 <style>
 	#photo_dosen {
 		width: 100%;
