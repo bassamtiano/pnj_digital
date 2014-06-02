@@ -1,10 +1,10 @@
 <script type="text/javascript">
   function hapus_jurusan(){
-    var dataHapusJurusan = $("#form_hapus_jurusan").serialize();
+    var dataTambahAbsenDosen = $("#form_hapus_jurusan").serialize();
 
     $.ajax({
       url:"{{ route('admin_prodi_tambah_absen_dosen') }}",
-      data: dataTambah,
+      data: dataTambahAbsenDosen,
 
 
       success:function(result){
@@ -12,7 +12,7 @@
         }
       });
 
-     dashboard_menu_active('.menu_admin_prodi_group', '#admin_prodi_content_dashboard', '#' + 'menu_admin_prodi_absen_mahasiswa');
+     dashboard_menu_active('.menu_admin_prodi_group', '#admin_prodi_content_dashboard', '#' + 'menu_admin_prodi_absen_dosen');
   }
 </script>
 
