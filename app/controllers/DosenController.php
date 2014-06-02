@@ -50,7 +50,9 @@
 
 		public function dosen_download() {
 			return View::make('dosen.moduls.dosen_download');
-		}		
+		}
+
+
 
 
 /* --------------------------------------------------
@@ -199,6 +201,18 @@
 
  		public function dosen_ambil_absen_akademis() {
 
+ 		}
+
+ 		public function dosen_baca_permohonan(){
+ 			$id_dosen = '1';
+ 			$dosen_permohonan = DB::table('tbl_dosen_permohonan')
+ 								->join('tbl_dosen', 'tbl_dosen.id_dosen', '=', 'tbl_dosen_permohonan.id_dosen')
+ 								->join('tbl_permohonan','tbl_permohonan.id_permohonan', '=', 'tbl_dosen_permohonan.id_permohonan')
+ 								->where('tbl_dosen_permohonan.id_dosen', '=', $id_dosen)
+ 								->get(array('tbl_dosen_permohonan.id_dosen_permohonan', 'tbl_dosen.nama','tbl_permohonan.permohonan','tbl_dosen_permohonan.keterangan','tbl_dosen_permohonan.status' ));
+
+ 			// return DosenPermohonan::all();
+ 			return $dosen_permohonan;
  		}
 
 /* --------------------------------------------------

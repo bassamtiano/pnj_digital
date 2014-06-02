@@ -153,5 +153,16 @@ function DosenMatakuliahController($scope, $http) {
 	}
 	$scope.query = {};
 	$scope.model_pilihan_cari = 'id_mata_kuliah';
+
+
+}
+/* ------------------------------------------------------------------*/ 
+/* -----------------------PERMOHONAN---------------------------------*/ 
+/* ------------------------------------------------------------------*/ 
+function DosenLaporanPermohonanController($scope,$http){
+	$http.get('/public/dosen/baca/permohonan').success(function(data) {
+		$scope.permohonan = data;
+	});
+	
 }
 

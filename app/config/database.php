@@ -56,11 +56,11 @@ return array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
 
-			'unix_socket'   => '/Applications/MAMP/tmp/mysql/mysql.sock',
+			// 'unix_socket'   => '/Applications/MAMP/tmp/mysql/mysql.sock',
 
 			'database'  => 'pnj_digital',
 			'username'  => 'root',
-			'password'  => 'admin',
+			'password'  => '',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
