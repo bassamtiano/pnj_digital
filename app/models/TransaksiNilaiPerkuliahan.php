@@ -13,7 +13,7 @@
 
 		public static function ubah_transaksi_nilai_perkuliahan($id_transaksi_nilai_perkuliahan, $id_mahasiswa, $id_dosen, $id_matkul, $semester, $nilai_tugas, $nilai_uts, $nilai_uas){
 
-			return TransaksiNilaiPerkuliahan::where('id_transaksi_nilai_perkuliahan','=', $id_transaksi_nilai_perkuliahan)->update(array('id_mahasiswa'=>$id_mahasiswa, 'id_dosen'=>$id_dosen,'id_matkul'=>$id_matkul, 'semester' => $semester,'nilai_tugas'=>$nilai_tugas, 'nilai_uts'=>$nilai_uts, 'nilai_uas'=>$nilai_uas)));
+			return TransaksiNilaiPerkuliahan::where('id_transaksi_nilai_perkuliahan','=', $id_transaksi_nilai_perkuliahan)->update(array('id_mahasiswa'=>$id_mahasiswa, 'id_dosen'=>$id_dosen,'id_matkul'=>$id_matkul, 'semester' => $semester,'nilai_tugas'=>$nilai_tugas, 'nilai_uts'=>$nilai_uts, 'nilai_uas'=>$nilai_uas));
 
 
 		}

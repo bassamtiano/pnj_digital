@@ -340,6 +340,8 @@ Route::get('dosen/baca/pengabdian', array('as' => 'dosen_baca_pengabdian', 'uses
 
 Route::get('dosen/baca/penelitian', array('as' => 'dosen_baca_penelitian', 'uses' => 'DosenController@dosen_baca_penelitian'));
 
+Route::get('dosen/baca/nilai', array('as' => 'dosen_baca_nilai' , 'uses' => 'DosenController@dosen_baca_nilai' ));
+
  /* --------------------------------------------------
 |
 |	Ubah Tambah Data

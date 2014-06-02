@@ -21,18 +21,18 @@
 </div><!--/broccoli-rowKepala-->
 
 	<!-- Awal Dashboard konten -->
-	<div class="container" ng-controller="DosenTransaksiNilaiController"><!--Awal Containter-->
+	<div class="container"><!--Awal Containter-->
 		<div class="row"> <!--Row Combo Box-->
 			<div class="col-md-6 panel panel-default"> <!-- awal div panel-->
 				<div class="panel-body"> <!-- awal div panel-body-->
 
-					<form class="form-horizontal" role="form" ng-submit="submitDataKelas()" >
+					<form class="form-horizontal" role="form" >
 								
 								<!-- Awal Jurusan -->
 								<div class="form-group">
 									<label for="jurusan" class="col-md-4 control-table">Jurusan</label>
 									<div class="col-md-8">
-										<select class="form-control" name="jurusan" id="input_jurusan" ng-model="">
+										<select class="form-control" name="jurusan" id="input_jurusan">
 											<option value="1">Teknik Elektro (Contoh)</option>
 											<option value="">Teknik Sipil</option>									
 										</select>
@@ -44,7 +44,7 @@
 								<div class="form-group">
 									<label for="prodi" class="col-md-4 control-table">Prodi</label>
 									<div class="col-md-8">
-										<select class="form-control" name="prodi" id="input_prodi" ng-model="">
+										<select class="form-control" name="prodi" id="input_prodi">
 											<option value="1">Teknik Informatika (Contoh)</option>	
 											<option value="">Teknik Listrik</option>								
 										</select>
@@ -56,7 +56,7 @@
 								<div class="form-group">
 									<label for="kelas" class="col-md-4 control-table">Kelas</label>
 									<div class="col-md-8">
-										<select class="form-control" name="kelas" id="input_kelas" ng-model="">
+										<select class="form-control" name="kelas" id="input_kelas">
 											<option value="1">IT-6A (Contoh)</option>
 											<option value="">IT-6B</option>									
 										</select>
@@ -68,7 +68,7 @@
 								<div class="form-group">
 									<label for="matkul" class="col-md-4 control-table">Mata Kuliah</label>
 									<div class="col-md-8">
-										<select class="form-control" name="matkul" id="input_matkul" ng-model="">
+										<select class="form-control" name="matkul" id="input_matkul">
 											<option value="1">Multimedia (Contoh)</option>
 											<option value="1">Digital Forensics (Contoh)</option>									
 										</select>
@@ -95,7 +95,7 @@
 					<th class="text-center" width="10%" style="border-bottom:2px solid #000;" ng-click="">UTS &nbsp; <i class="fa fa-sort"></i>  </th>
 					<th class="text-center" width="10%" style="border-bottom:2px solid #000;" ng-click="">UAS &nbsp; <i class="fa fa-sort"></i> </th>
 					<th class="text-center" width="10%" style="border-bottom:2px solid #000;" ng-click="">Nilai &nbsp; <i class="fa fa-sort"></i> </th>
-					<th class="text-center" width="15%" style="border-bottom:2px solid #000;" ng-click="">Keterangan &nbsp; <i class="fa fa-sort"></i> </th>
+					
 					<th class="text-center" width="5%" style="border-bottom:2px solid #000;"> ... </th>
 				</tr>
 			</table>
@@ -103,15 +103,15 @@
 
 		<div class="col-md-12 broccoli-rowItable">
 			<table class="table table-striped table-bordered table-hover" style="table-layout:fixed;">
-				<tr ng-repeat="t in transaksinilai | filter:query | orderBy:predicate:reverse">
+				<tr ng-repeat="n in nilai | filter:query | orderBy:predicate:reverse">
 					<td class="text-center" width="5%">@{{ $index+1 }}</td>
-					<td class="text-center" width="20%">@{{}}</td>
-					<td class="text-center" width="15%">@{{}}</td>
-					<td class="text-center" width="10%">@{{}}</td>
-					<td class="text-center" width="10%">@{{}}</td>
-					<td class="text-center" width="10%">@{{}}</td>
-					<td class="text-center" width="10%">@{{}}</td>
-					<td class="text-center" width="15%">@{{}}</td>
+					<td class="text-center" width="20%">@{{n.nama}}</td>
+					<td class="text-center" width="15%">@{{n.nim}}</td>
+					<td class="text-center" width="10%">@{{n.tugas}}</td>
+					<td class="text-center" width="10%">@{{n.uts}}</td>
+					<td class="text-center" width="10%">@{{n.uas}}</td>
+					<td class="text-center" width="10%">@{{ }}</td>
+					
 					<td class="text-center" width="5%"> <button class="btn btn-success btn-md" ng-click="dosen_modal_ubah_transaksi_nilai_perkuliahan(t.id_transaksi_nilai_perkuliahan)"> <span class="glyphicon glyphicon-edit"></span></button> </td>
 					</tr>
 			</table>
