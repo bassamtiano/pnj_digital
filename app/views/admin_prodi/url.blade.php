@@ -12,9 +12,13 @@
 	var url_admin_prodi_pengabdian = "{{ route('admin_prodi_pengabdian') }}";
 	var url_admin_prodi_kuisioner = "{{ route('admin_prodi_kuisioner') }}";
 
-	var url_admin_prodi_modal_tambah_absen_mahasiswa = "{{ route('admin_prodi_modal_tambah_absen_mahasiswa') }}"
-	var url_admin_prodi_modal_ubah_status_hadir_mahasiswa = "{{ route('admin_prodi_modal_ubah_status_hadir_mahasiswa') }}"
-	var url_admin_prodi_modal_ubah_status_absen_mahasiswa = "{{ route('admin_prodi_moodal_ubah_status_absen_mahasiswa') }}"
+	var url_admin_prodi_modal_tambah_absen_mahasiswa = "{{ route('admin_prodi_modal_tambah_absen_mahasiswa') }}";
+
+	var url_admin_prodi_modal_tambah_absen_dosen = "{{ route('admin_prodi_modal_tambah_absen_dosen') }}";
+
+	var url_admin_prodi_modal_ubah_status_hadir_mahasiswa = "{{ route('admin_prodi_modal_ubah_status_hadir_mahasiswa') }}";
+	var url_admin_prodi_modal_ubah_status_absen_mahasiswa = "{{ route('admin_prodi_moodal_ubah_status_absen_mahasiswa') }}";
+
 
 	var url_admin_prodi_modal_tambah_karyawan = "{{ route('admin_prodi_modal_tambah_karyawan') }}";
 	var url_admin_prodi_modal_detail_karyawan = "{{ route('admin_prodi_modal_detail_karyawan') }}";

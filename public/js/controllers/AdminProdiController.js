@@ -33,7 +33,7 @@ function AdminProdiAbsenMahasiswaController($scope, $http) {
 		$scope.data_absen_mahasiswa = data_am;
 	});
 
-	$http.get('/public/admin_prodi/baca/status_absen_sekarang').success(function(data_stam) {
+	$http.get('/public/admin_prodi/baca/status_mahasiswa_absen_sekarang').success(function(data_stam) {
 		$scope.status_tambah_absen_mahasiswa = data_stam;
 	});
 
@@ -43,7 +43,7 @@ function AdminProdiAbsenMahasiswaController($scope, $http) {
 	$scope.modal_tambah_absen_mahasiswa = function() {
 		$('.modal').load(url_admin_prodi_modal_tambah_absen_mahasiswa , function() {
 			$('.modal').modal('show');
-		});	
+		});
 	}
 
 	$scope.modal_ubah_status_hadir_mahasiswa = function(id_mahasiswa_absen, nama) {
@@ -68,12 +68,34 @@ function AdminProdiAbsenDosenController($scope, $http) {
 		$scope.data_absen_dosen = data_ad;
 	});
 
+	$http.get('/public/admin_prodi/baca/status_dosen_absen_sekarang').success(function(data_stad) {
+		$scope.status_tambah_absen_dosen = data_stad;
+	});
+
+	$scope.modal_tambah_absen_dosen = function() {
+		$('.modal').load(url_admin_prodi_modal_tambah_absen_dosen , function() {
+			$('.modal').modal('show');
+		});
+	}
+
+
 	$scope.ubah_status_absen = function(id_dosen_absen) {
-		alert('hai_absen ' + id_dosen_absen);
+
+		$http.get('/public/admin_prodi/ubah/absensi_dosen?id_dosen_absen=' + id_dosen_absen + '&status=0').success(function() {
+			$http.get('/public/admin_prodi/baca/absen_dosen').success(function(data_ad) {
+				$scope.data_absen_dosen = data_ad;
+			});
+		});
+
 	}
 
 	$scope.ubah_status_hadir = function(id_dosen_absen) {
-		alert('hai_hadir ' + id_dosen_absen);
+		
+		$http.get('/public/admin_prodi/ubah/absensi_dosen?id_dosen_absen=' + id_dosen_absen + '&status=1').success(function() {
+			$http.get('/public/admin_prodi/baca/absen_dosen').success(function(data_ad) {
+				$scope.data_absen_dosen = data_ad;
+			});
+		});
 	}
 
 }

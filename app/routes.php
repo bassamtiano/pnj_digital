@@ -539,6 +539,7 @@ Route::get('admin_prodi/modal/ubah_status_hadir_mahasiswa', array('as' => 'admin
 Route::get('admin_prodi/modal/ubah_status_absen_mahasiswa', array('as' => 'admin_prodi_moodal_ubah_status_absen_mahasiswa', 'uses' => 'AdminProdiController@admin_prodi_moodal_ubah_status_absen_mahasiswa'));
 
 
+Route::get('admin_prodi/modal/tambah_absen_dosen', array('as' => 'admin_prodi_modal_tambah_absen_dosen', 'uses' => 'AdminProdiController@admin_prodi_modal_tambah_absen_dosen'));
 
 
 Route::get('admin_prodi/modal/tambah_karyawan', array('as' => 'admin_prodi_modal_tambah_karyawan', 'uses' => 'AdminProdiController@admin_prodi_modal_tambah_karyawan'));
@@ -574,7 +575,9 @@ Route::get('admin_prodi/modal/hapus_penelitian_dosen', array('as' => 'admin_prod
 |
  --------------------------------------------------*/ 
 
-Route::get('admin_prodi/baca/status_absen_sekarang', array('as' => 'admin_prodi_baca_status_absen_sekarang', 'uses' => 'AdminProdiController@admin_prodi_baca_status_absen_sekarang'));
+Route::get('admin_prodi/baca/status_mahasiswa_absen_sekarang', array('as' => 'admin_prodi_baca_status_mahasiswa_absen_sekarang', 'uses' => 'AdminProdiController@admin_prodi_baca_status_mahasiswa_absen_sekarang'));
+
+Route::get('admin_prodi/baca/status_dosen_absen_sekarang', array('as' => 'admin_prodi_baca_status_dosen_absen_sekarang', 'uses' => 'AdminProdiController@admin_prodi_baca_status_dosen_absen_sekarang'));
 
 
 
@@ -621,9 +624,7 @@ Route::get('admin_prodi/ubah/hadir_mahasiswa', array('as' => 'admin_prodi_ubah_h
 Route::get('admin_prodi/ubah/absen_mahasiswa', array('as' => 'admin_prodi_ubah_absen_mahasiswa', 'uses' => 'AdminProdiController@admin_prodi_ubah_absen_mahasiswa'));
 
 
-Route::get('admin_prodi/ubah/hadir_dosen', array('as' => 'admin_prodi_ubah_hadir_dosen', 'uses' => 'AdminProdiController@admin_prodi_ubah_hadir_dosen'));
-
-Route::get('admin_prodi/ubah/absen_dosen', array('as' => 'admin_prodi_ubah_absen_dosen', 'uses' => 'AdminProdiController@admin_prodi_ubah_absen_dosen'));
+Route::get('admin_prodi/ubah/absensi_dosen', array('as' => 'admin_prodi_ubah_absensi_dosen', 'uses' => 'AdminProdiController@admin_prodi_ubah_absensi_dosen'));
 
 
 Route::get('admin_prodi/modal/ubah_karyawan', array('as' => 'admin_prodi_modal_ubah_karyawan', 'uses' => 'AdminProdiController@admin_prodi_modal_ubah_karyawan'));

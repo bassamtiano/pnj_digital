@@ -58,6 +58,10 @@
  			return View::make('admin_prodi.modals.admin_prodi_modal_tambah_karyawan');
  		}
 
+ 		public function admin_prodi_modal_tambah_absen_dosen() {
+ 			return View::make('admin_prodi.modals.admin_prodi_modal_tambah_absen_dosen');
+ 		}
+
 		public function admin_prodi_modal_detail_karyawan(){
  			return View::make('admin_prodi.modals.admin_prodi_modal_detail_karyawan');
  		} 
@@ -161,8 +165,12 @@
 			return ViewPenelitianDosen::all();
 		}
 
-		public function admin_prodi_baca_status_absen_sekarang() {
+		public function admin_prodi_baca_status_mahasiswa_absen_sekarang() {
 			return AbsenMahasiswa::status_absen_sekarang();
+		}
+
+		public function admin_prodi_baca_status_dosen_absen_sekarang() {
+			return DosenAbsen::status_dosen_absen_sekarang();
 		}
 
 		public function admin_prodi_baca_absen_mahasiswa() {
@@ -352,12 +360,11 @@
 			AbsenMahasiswa::ubah_absen_mahasiswa($id_mahasiswa_absen, $jam_mulai, $jam_akhir, $status);
 		}
 
-		public function admin_prodi_ubah_hadir_mahasiswa() {
+		public function admin_prodi_ubah_absensi_dosen() {
+			$id_dosen_absen = Input::get('id_dosen_absen');
+			$status = Input::get('status');
 
-		}
-
-		public function admin_prodi_ubah_absen_mahasiswa() {
-			
+			DosenAbsen::ubah_absensi_dosen($id_dosen_absen, $status);
 		}
 
 	}

@@ -1,6 +1,6 @@
 {{HTML::script('js/jquery.min.js')}}
 {{HTML::script('js/angular.min.js')}}
-
+{{HTML::script('js/bootstrap.min.js')}}
 
 
 <div ng-controller="AdminProdiAbsenDosenController" id="div-controller">
@@ -11,7 +11,7 @@
 
 	<div class="row broccoli-rowNavigasi broccoli-hilangPadding-semua">
 		<div class="col-md-2 broccoli-mojok-kiri">
-			<button ng-if="status_tambah_absen_mahasiswa.status == 1" class="btn btn-success btn-md" ng-click="modal_tambah_absen_mahasiswa()"> <span class="glyphicon glyphicon-plus"></span> Tambah Absen </button>
+			<button ng-if="status_tambah_absen_dosen.status == 1" class="btn btn-success btn-md" ng-click="modal_tambah_absen_dosen()"> <span class="glyphicon glyphicon-plus"></span> Tambah Absen </button>
 		</div><!--/navigasiKiri-->
 		<div class="col-md-2 broccoli-mojok-kanan">
 			<select class="form-control" ng-model='form_pilihan_jurusan.type' required ng-options='option.value as option.name for option in typeOptions_jurusan'></select>
