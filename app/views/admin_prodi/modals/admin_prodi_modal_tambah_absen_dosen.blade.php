@@ -3,7 +3,7 @@
     var dataHapusJurusan = $("#form_hapus_jurusan").serialize();
 
     $.ajax({
-      url:"{{ route('admin_prodi_tambah_absen_mahasiswa') }}",
+      url:"{{ route('admin_prodi_tambah_absen_dosen') }}",
       data: dataTambah,
 
 

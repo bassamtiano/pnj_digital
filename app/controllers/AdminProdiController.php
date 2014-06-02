@@ -234,6 +234,10 @@
 			return AbsenMahasiswa::tambah_absen_mahasiswa();
 		}
 
+		public function admin_prodi_tambah_absen_dosen() {
+			return DosenAbsen::tambah_absen_dosen();
+		}
+
 //======================= AME START=========================================//
 		public function admin_prodi_tambah_pengabdian_dosen(){
 			$id_dosen = Input::get('id_dosen');

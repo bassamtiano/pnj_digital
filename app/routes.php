@@ -604,6 +604,10 @@ Route::get('admin_prodi/baca/admin_prodi_pengabdian', array('as' => 'admin_prodi
 
 Route::get('admin_prodi/tambah/absen_mahasiswa', array('as' => 'admin_prodi_tambah_absen_mahasiswa', 'uses' => 'AdminProdiController@admin_prodi_tambah_absen_mahasiswa'));
 
+Route::get('admin_prodi/tambah/absen_dosen', array('as' => 'admin_prodi_tambah_absen_dosen', 'uses' => 'AdminProdiController@admin_prodi_tambah_absen_dosen'));
+
+
+
 Route::get('admin_prodi/tambah/admin_prodi_tambah_pengabdian_dosen', array('as' => 'admin_prodi_tambah_pengabdian_dosen', 'uses' => 'AdminProdiController@admin_prodi_tambah_pengabdian_dosen'));
 
 Route::get('admin_prodi/tambah/admin_prodi_tambah_penelitian_dosen', array('as' => 'admin_prodi_tambah_penelitian_dosen', 'uses' => 'AdminProdiController@admin_prodi_tambah_penelitian_dosen'));
