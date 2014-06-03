@@ -156,12 +156,6 @@ function AdminProdiBacaPengabdianDosen($scope, $http){
 		});
 	}
 
-		$scope.modal_hapus_pengabdian_dosen = function(id) {
-		$('.modal').load(url_admin_prodi_modal_hapus_pengabdian_dosen , function() {
-			$('.modal').modal('show');
-		});
-	}
-
 	$scope.modal_hapus_pengabdian_dosen = function(id_dosen_pengabdian) {
 		$('.modal').load(url_admin_prodi_modal_hapus_pengabdian_dosen + '?id_dosen_pengabdian=' + id_dosen_pengabdian, function() {
 			$('.modal').modal('show');

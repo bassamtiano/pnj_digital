@@ -69,8 +69,8 @@
 					<td class="text-left" width="32%"> @{{ dp.judul_penelitian }} </td>
 					<td class="text-left" width="15%"> @{{ dp.tanggal_penelitian }} </td>
 					<td class="text-center" width="15%"> 
-						<div class="btn-group"><button class="btn btn-primarry btn-md" ng-click="modal_detail_penelitian_dosen()"> <span class="glyphicon glyphicon-eye-open"></span></button>
-					 		<button class="btn btn-success btn-md" ng-click="modal_ubah_penelitian_dosen()"> <span class="glyphicon glyphicon-edit"></span></button>
+						<div class="btn-group"><button class="btn btn-primarry btn-md" ng-click="modal_detail_penelitian_dosen(dp.id_dosen_penelitian)"> <span class="glyphicon glyphicon-eye-open"></span></button>
+					 		<button class="btn btn-success btn-md" ng-click="modal_ubah_penelitian_dosen(dp.id_dosen_penelitian)"> <span class="glyphicon glyphicon-edit"></span></button>
 					 		<button class="btn btn-danger btn-md" ng-click="modal_hapus_penelitian_dosen(dp.id_dosen_penelitian)"> <span class="glyphicon glyphicon-trash"></span></button> 
 						</div>
 					</td>

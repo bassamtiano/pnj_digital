@@ -1,5 +1,5 @@
 <script type="text/javascript">
-	function hapus_pnelitian_dosen(){
+	function hapus_penelitian_dosen(){
 		var dataF = $("#form_admin_prodi_hapus_penelitian_dosen").serialize();
 
 		$.ajax({

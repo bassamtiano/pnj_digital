@@ -105,7 +105,7 @@
 
  			$detail_penelitian_dosen = AdminProdiPenelitianDosen::where('id_dosen_penelitian', '=', $id_dosen_penelitian)->get(array('id_dosen_penelitian', 'judul_penelitian', 'id_dosen', 'tanggal_penelitian', 'attachment', 'status_share'));
  			return View::make('admin_prodi.modals.admin_prodi_modal_detail_penelitian_dosen', compact('id_dosen_penelitian', 'detail_penelitian_dosen'));
- 		} 		
+ 		} 			
 
  		public function admin_prodi_modal_ubah_penelitian_dosen(){
 
